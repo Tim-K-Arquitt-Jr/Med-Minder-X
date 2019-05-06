@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 
 class medViewController: UITableViewController {
     
-    var items = [Med_Minder_X]
+    var items = [infoStore]
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
  
@@ -68,7 +68,7 @@ class medViewController: UITableViewController {
             do{
             try context.save()
             }catch{
-                print("Error deleting meds with \(Error)")
+                print("Error deleting meds with \(error)")
             }
             
             tableView.deleteRows(at: [IndexPath], with: .automatic)
@@ -82,7 +82,7 @@ class medViewController: UITableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
-        let alert = UIAlertController(title: "Add New Meds", message: "", preferredStyle: alert)
+        let alert = UIAlertController(title: "Add New Meds", message: "new meds", preferredStyle:alert)
         let action = UIAlertAction(title: "Add Meds", style: .default) {(action) in
             let newMeds = Med_Minder_X(context: self.context)
             newMeds.name = textField.text!
@@ -108,7 +108,7 @@ class medViewController: UITableViewController {
         do{
             try context.save()
         }catch{
-            print("Error with saving\(Error)")
+            print("Error with saving\(error)")
         }
         
         tableView.reloadData()
@@ -123,7 +123,7 @@ class medViewController: UITableViewController {
         items = try context.fetch(request)
         }catch{
             
-            print("Error fetching from context\(Error)")
+            print("Error fetching from context\(error)")
         }
         
         tableView.reloadData()
