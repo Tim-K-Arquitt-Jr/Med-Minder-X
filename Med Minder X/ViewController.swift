@@ -61,7 +61,7 @@ class medViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: indexPath){
         
         if (editingStyle == .delete) {
-            let.item = items[indexPath.row]
+            let.item = item[indexPath.row]
             items.remove(at: indexPath.row)
             context.delete(item)
             
@@ -82,7 +82,7 @@ class medViewController: UITableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
-        let alert = UIAlertController(title: "Add New Meds", message: "new meds", preferredStyle:alert)
+        let alert = UIAlertController(title: "Add New Meds", message: "New Meds", preferredStyle:alert)
         let action = UIAlertAction(title: "Add Meds", style: .default) {(action) in
             let newMeds = Med_Minder_X(context: self.context)
             newMeds.name = textField.text!
